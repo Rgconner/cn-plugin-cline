@@ -10,7 +10,7 @@ if [ -f "requirements.txt" ]; then
     pip install --target ./deps -r requirements.txt
 fi
 
-artifacts=("cn-plugin-cline.py" "manifest.json" "__init__.py" "README.md")
+artifacts=("cn-plugin-cline.py" "manifest.json" "__init__.py" "README.md" "LICENSE")
 if [ -d "deps" ]; then
     artifacts+=("deps")
 fi

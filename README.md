@@ -95,3 +95,7 @@ git push origin v0.1.0
 
 - [COVAS:NEXT](https://github.com/RatherRude/Elite-Dangerous-AI-Integration)
 - Structure based on [COVAS-Labs/plugin-elevenlabs](https://github.com/COVAS-Labs/plugin-elevenlabs)
+
+## License
+
+MIT, see [LICENSE](LICENSE).

@@ -11,7 +11,7 @@ if (Test-Path "requirements.txt") {
     pip install --target ./deps -r requirements.txt
 }
 
-$artifacts = "cn-plugin-cline.py", "manifest.json", "__init__.py", "README.md"
+$artifacts = "cn-plugin-cline.py", "manifest.json", "__init__.py", "README.md", "LICENSE"
 
 if (Test-Path "deps") {
     $artifacts += "deps"
