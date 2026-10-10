@@ -1,0 +1,9 @@
+{
+    "guid": "6cfe5dd1-0227-41a2-b611-bc4ebbf8fd9e",
+    "name": "COVAS:NEXT Cline Plugin",
+    "version": "0.1.0",
+    "author": "Rgconner",
+    "repository": "https://github.com/Rgconner/cn-plugin-cline",
+    "description": "Cline API (api.cline.bot) LLM and vision providers for COVAS:NEXT",
+    "entrypoint": "cn-plugin-cline.py"
+}

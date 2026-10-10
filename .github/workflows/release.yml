@@ -1,0 +1,60 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout plugin
+        uses: actions/checkout@v4
+
+      - name: Checkout COVAS:NEXT
+        uses: actions/checkout@v4
+        with:
+          repository: RatherRude/Elite-Dangerous-AI-Integration
+          path: covas
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install COVAS:NEXT requirements
+        run: python -m pip install -r covas/requirements.txt
+
+      - name: Run tests
+        run: python -m pytest tests -v
+        env:
+          COVAS_SRC: ${{ github.workspace }}/covas/src
+
+  package:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build plugin package
+        run: |
+          chmod +x pack.sh
+          ./pack.sh
+
+      - name: Rename artifact
+        run: |
+          sanitized_tag="${GITHUB_REF_NAME//./-}"
+          mv dist/cn-plugin-cline.zip dist/cn-plugin-cline-${sanitized_tag}.zip
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
